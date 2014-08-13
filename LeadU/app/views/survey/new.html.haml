@@ -1,0 +1,666 @@
+#wrap
+  = render("static_pages/navigation.html.haml")
+  .container 
+    - flash.each do |key,value|
+      %div{:class => "alert alert-#{key}"}= value  
+    .marketing
+      %h2{:style=>'text-align: center'} Let's learn more about your personality
+      %br
+      %center
+        <b>If you already know your type (ex. ENTP):</b>
+        = form_tag('/survey' , :method => :post) do
+          = label_tag('entered_type', "Personality Type")
+          = text_field_tag('entered_type')
+          <br>
+          = submit_tag("Enter", :class=>"btn btn-primary btn-small") 
+
+      %h4 Otherwise, to get your four character personality "type", we need you to answer the following questions:
+
+      = form_for :input do |f|
+        %table.table.table-striped.table-bordered.table-condensed.text1
+          %tr
+            %th Question
+            %th Answer
+
+          %tr.gray1
+            %td 1. Groups need people to get things going; and I'm pretty comfortable doing just that:
+            %td
+              = f.radio_button 'EI-1', '1'
+              me
+              %br
+              = f.radio_button 'EI-1', '-1'
+              not me
+
+          %tr.gray2
+            %td 2. When in conversation with people if details are left out:
+            %td
+              = f.radio_button 'SN-1', '1'
+              I am eager to have them filled in
+              %br
+              = f.radio_button 'SN-1', '-1'
+              I tend to get the picture without the detail
+
+          %tr.gray1
+            %td 3. When I delegate work, I tend to err on this side:
+            %td
+              = f.radio_button 'SN-2', '1'
+              Being overly specific
+              %br
+              = f.radio_button 'SN-2', '-1'
+              Being too vague
+
+          %tr.gray2
+            %td 4. Which do you tend to be:
+            %td
+              = f.radio_button 'TF-1', '1'
+              Tough-minded
+              %br
+              = f.radio_button 'TF-1', '-1'
+              Soft-hearted
+
+          %tr.gray1
+            %td 5. When working in a team, group harmony is essential:
+            %td
+              = f.radio_button 'TF-2', '1'
+              No
+              %br
+              = f.radio_button 'TF-2', '-1'
+              Yes
+
+          %tr.gray2
+            %td 6. You are seldom late:
+            %td
+              = f.radio_button 'JP-1', '1'
+              Yes
+              %br
+              = f.radio_button 'JP-1', '-1'
+              No
+
+          %tr.gray1
+            %td 7. It really bothers you to not have things in their place:
+            %td
+              = f.radio_button 'JP-2', '1'
+              Yes
+              %br
+              = f.radio_button 'JP-2', '-1'
+              No
+
+          %tr.gray2
+            %td 8. I do my best work alone:
+            %td
+              = f.radio_button 'EI-2', '1'
+              Not me
+              %br
+              = f.radio_button 'EI-2', '-1'
+              Me
+
+          %tr.gray1
+            %td 9. When making decisions, I tend to methodically review similar past situations:
+            %td
+              = f.radio_button 'SN-3', '1'
+              Me
+              %br
+              = f.radio_button 'SN-3', '-1'
+              Not Me
+
+          %tr.gray2
+            %td 10. When studying a concept like “leadership” which would you most likely prefer to study:
+            %td
+              = f.radio_button 'SN-4', '1'
+              Real life examples
+              %br
+              = f.radio_button 'SN-4', '-1'
+              Ideas and concepts
+
+          %tr.gray1
+            %td 11. Being impartial is essential when resolving an issue:
+            %td
+              = f.radio_button 'TF-3', '1'
+              Yes
+              %br
+              = f.radio_button 'TF-3', '-1'
+              No
+
+          %tr.gray2
+            %td 12. In general, you find yourself wishing people would be a little more:
+            %td
+              = f.radio_button 'TF-4', '1'
+              Cool and logical
+              %br
+              = f.radio_button 'TF-4', '-1'
+              Warm and caring
+
+          %tr.gray1
+            %td 13. You prefer to keep open-ended plans rather than tie events down:
+            %td
+              = f.radio_button 'JP-3', '1'
+              No
+              %br
+              = f.radio_button 'JP-3', '-1'
+              Yes
+
+          %tr.gray2
+            %td 14. You can trust yourself to improvise more than to plan:
+            %td
+              = f.radio_button 'JP-4', '1'
+              No
+              %br
+              = f.radio_button 'JP-4', '-1'
+              Yes
+
+          %tr.gray1
+            %td 15. My best ideas and contributions tend to come through lively give-and-take with others:
+            %td
+              = f.radio_button 'EI-3', '1'
+              Me
+              %br
+              = f.radio_button 'EI-3', '-1'
+              Not Me
+
+          %tr.gray2
+            %td 16. What would likely frustrate you more, an approach that is overly:
+            %td
+              = f.radio_button 'SN-5', '1'
+              In the clouds
+              %br
+              = f.radio_button 'SN-5', '-1'
+              In the particulars
+
+          %tr.gray1
+            %td 17. When meeting someone, do you tend to pay attention to:
+            %td
+              = f.radio_button 'SN-6', '1'
+              Particular physical characteristics
+              %br
+              = f.radio_button 'SN-6', '-1'
+              The "feel" of who they are
+
+          %tr.gray2
+            %td 18. Which way are you more inclined to treat people:
+            %td
+              = f.radio_button 'TF-5', '1'
+              Being brutally honest
+              %br
+              = f.radio_button 'TF-5', '-1'
+              Soft-pedaling the hard facts
+
+          %tr.gray1
+            %td 19. In study or work decisions I naturally tend to do the things:
+            %td
+              = f.radio_button 'TF-6', '1'
+              That move the work along
+              %br
+              = f.radio_button 'TF-6', '-1'
+              That help others work well together
+
+          %tr.gray2
+            %td 20. It's just part of your nature to complete your tasks on time:
+            %td
+              = f.radio_button 'JP-5', '1'
+              Yes
+              %br
+              = f.radio_button 'JP-5', '-1'
+              No
+
+          %tr.gray1
+            %td 21. You prefer to make decisions:
+            %td
+              = f.radio_button 'JP-6', '1'
+              As soon as practical
+              %br
+              = f.radio_button 'JP-6', '-1'
+              Only when it's all clear
+
+          %tr.gray2
+            %td 22. I prefer to share my thanks with:
+            %td
+              = f.radio_button 'EI-4', '1'
+              Verbal thanks
+              %br
+              = f.radio_button 'EI-4', '-1'
+              A written note
+
+          %tr.gray1
+            %td 23. Facts:
+            %td
+              = f.radio_button 'SN-7', '1'
+              speak for themselves
+              %br
+              = f.radio_button 'SN-7', '-1'
+              usually require interpretation
+
+          %tr.gray2
+            %td 24. Do you prefer to work with:
+            %td
+              = f.radio_button 'SN-8', '1'
+              practical information
+              %br
+              = f.radio_button 'SN-8', '-1'
+              abstract ideas
+
+          %tr.gray1
+            %td 25. I prefer a speech that:
+            %td
+              = f.radio_button 'TF-7', '1'
+              Informs me
+              %br
+              = f.radio_button 'TF-7', '-1'
+              Inspires me
+
+          %tr.gray2
+            %td 26. Head over heart:
+            %td
+              = f.radio_button 'TF-8', '1'
+              Yes
+              %br
+              = f.radio_button 'TF-8', '-1'
+              No
+
+          %tr.gray1
+            %td 27. Deadlines are:
+            %td
+              = f.radio_button 'JP-7', '1'
+              Almost always real and should be followed
+              %br
+              = f.radio_button 'JP-7', '-1'
+              Useful but not always necessary
+
+          %tr.gray2
+            %td 28. You sometimes focus so intently on the goal that you may miss new information:
+            %td
+              = f.radio_button 'JP-8', '1'
+              Yes
+              %br
+              = f.radio_button 'JP-8', '-1'
+              No
+
+          %tr.gray1
+            %td 29. I find working in large groups of people:
+            %td
+              = f.radio_button 'EI-5', '1'
+              Energizes me
+              %br
+              = f.radio_button 'EI-5', '-1'
+              Tires me out
+
+          %tr.gray2
+            %td 30. If you join up with people who have been working in an area for a long time, would you:
+            %td
+              = f.radio_button 'SN-9', '1'
+              Assume they know how to do it best
+              %br
+              = f.radio_button 'SN-9', '-1'
+              Keep my eyes open for ways to improve on current systems
+
+          %tr.gray1
+            %td 31. Which important work would you prefer:
+            %td
+              = f.radio_button 'SN-10', '1'
+              Execute the plan
+              %br
+              = f.radio_button 'SN-10', '-1'
+              Create the plan
+
+          %tr.gray2
+            %td 32. I have little patience for personal interest stories and get irritated when other people get swept up in them.:
+            %td
+              = f.radio_button 'TF-9', '1'
+              Yes
+              %br
+              = f.radio_button 'TF-9', '-1'
+              No
+
+          %tr.gray1
+            %td 33. When someone is upset, I tend to want to:
+            %td
+              = f.radio_button 'TF-10', '1'
+              Understand the underlying issue
+              %br
+              = f.radio_button 'TF-10', '-1'
+              Make sure they feel understood
+
+          %tr.gray2
+            %td 34. If you're working, but something really interesting comes along, you're likely to:
+            %td
+              = f.radio_button 'JP-9', '1'
+              Keep your focus on your work
+              %br
+              = f.radio_button 'JP-9', '-1'
+              Leave your work for the time being
+
+          %tr.gray1
+            %td 35. Which appeals to you more to:
+            %td
+              = f.radio_button 'JP-10', '1'
+              Focus and finish
+              %br
+              = f.radio_button 'JP-10', '-1'
+              Create and adapt
+
+          %tr.gray2
+            %td 36. I like to stay connected to a large group of friends as opposed to a few:
+            %td
+              = f.radio_button 'EI-6', '1'
+              Me
+              %br
+              = f.radio_button 'EI-6', '-1'
+              Not me
+
+          %tr.gray1
+            %td 37. Which do you find a more natural way of seeing how things work:
+            %td
+              = f.radio_button 'SN-11', '1'
+              Hands-on
+              %br
+              = f.radio_button 'SN-11', '-1'
+              From the balcony
+
+          %tr.gray2
+            %td 38. Which would you be more inclined to do in planning:
+            %td
+              = f.radio_button 'SN-12', '1'
+              Look at specific situations that could occur and plan for them
+              %br
+              = f.radio_button 'SN-12', '-1'
+              Focus in on the core idea of your strategy
+
+          %tr.gray1
+            %td 39. I put others' needs before my own:
+            %td
+              = f.radio_button 'TF-11', '1'
+              When it makes sense
+              %br
+              = f.radio_button 'TF-11', '-1'
+              If it will make them feel better
+
+          %tr.gray2
+            %td 40. People are amazingly different. So it helps to:
+            %td
+              = f.radio_button 'TF-12', '1'
+              Have clear, reasonable rules so they can all get along
+              %br
+              = f.radio_button 'TF-12', '-1'
+              Have tons of leeway for individual difference
+
+          %tr.gray1
+            %td 41. You make "to-do" lists because:
+            %td
+              = f.radio_button 'JP-11', '1'
+              You just love having lists and finishing things
+              %br
+              = f.radio_button 'JP-11', '-1'
+              Without them you know you might not finish things
+
+          %tr.gray2
+            %td 42. When you're still working right up to the deadline you tend to:
+            %td
+              = f.radio_button 'JP-12', '1'
+              Be frustrated that you didn't finish sooner
+              %br
+              = f.radio_button 'JP-12', '-1'
+              Find it pretty typical and feel energized by the pressure
+
+          %tr.gray1
+            %td 43. After a long week I prefer to spend Friday night at home with a few friends or alone:
+            %td
+              = f.radio_button 'EI-7', '1'
+              Not me
+              %br
+              = f.radio_button 'EI-7', '-1'
+              Me
+
+          %tr.gray2
+            %td 44. In a group project which job are you more likely to want to take on?
+            %td
+              = f.radio_button 'SN-13', '1'
+              Assembling the final project
+              %br
+              = f.radio_button 'SN-13', '-1'
+              Coming up with the big picture concept
+
+          %tr.gray1
+            %td 45. Which seems like a more appealing way to look at a big paper:
+            %td
+              = f.radio_button 'SN-14', '1'
+              Create a thorough outline
+              %br
+              = f.radio_button 'SN-14', '-1'
+              Identify the 3 big ideas
+
+          %tr.gray2
+            %td 46. If I had to fire someone it's most important that:
+            %td
+              = f.radio_button 'TF-13', '1'
+              They understand why
+              %br
+              = f.radio_button 'TF-13', '-1'
+              They feel cared about
+
+          %tr.gray1
+            %td 47. In general I prefer to be:
+            %td
+              = f.radio_button 'TF-14', '1'
+              Fair
+              %br
+              = f.radio_button 'TF-14', '-1'
+              Understanding
+
+          %tr.gray2
+            %td 48. When someone is telling you a story, you tend to 
+            %td
+              = f.radio_button 'JP-13', '1'
+              Need to get to the end result
+              %br
+              = f.radio_button 'JP-13', '-1'
+              Feel no great need to get to the end
+
+          %tr.gray1
+            %td 49. You find it very easy to change plans mid-stream:
+            %td
+              = f.radio_button 'JP-14', '1'
+              False
+              %br
+              = f.radio_button 'JP-14', '-1'
+              True
+
+          %tr.gray2
+            %td 50. I am able to work in distracting and busy environments:
+            %td
+              = f.radio_button 'EI-8', '1'
+              Me
+              %br
+              = f.radio_button 'EI-8', '-1'
+              Not me
+
+          %tr.gray1
+            %td 51. Which are you most comfortable trusting, your:
+            %td
+              = f.radio_button 'SN-15', '1'
+              Experience
+              %br
+              = f.radio_button 'SN-15', '-1'
+              Intuition
+
+          %tr.gray2
+            %td 52. If you had to quickly assess the suitability of an apartment to rent, would you more likely see if it:
+            %td
+              = f.radio_button 'SN-16', '1'
+              Meets your specific requirements
+              %br
+              = f.radio_button 'SN-16', '-1'
+              Just feels right
+
+          %tr.gray1
+            %td 53. People say I am too analytical about things:
+            %td
+              = f.radio_button 'TF-15', '1'
+              Yes
+              %br
+              = f.radio_button 'TF-15', '-1'
+              No
+
+          %tr.gray2
+            %td 54. People say I need to stop worrying about others so much:
+            %td
+              = f.radio_button 'TF-16', '1'
+              No
+              %br
+              = f.radio_button 'TF-16', '-1'
+              Yes
+
+          %tr.gray1
+            %td 55. I derive pleasure from organizing my life:
+            %td
+              = f.radio_button 'JP-15', '1'
+              True
+              %br
+              = f.radio_button 'JP-15', '-1'
+              False
+
+          %tr.gray2
+            %td 56. When something unexpected happens your natural tendency is to:
+            %td
+              = f.radio_button 'JP-16', '1'
+              Act
+              %br
+              = f.radio_button 'JP-16', '-1'
+              Wait and watch
+
+          %tr.gray1
+            %td 57. At a social gathering my conversations tend to be:
+            %td
+              = f.radio_button 'EI-9', '1'
+              Numerous and varied
+              %br
+              = f.radio_button 'EI-9', '-1'
+              Few and in depth
+
+          %tr.gray2
+            %td 58. How would you more likely be described:
+            %td
+              = f.radio_button 'SN-17', '1'
+              Realistic
+              %br
+              = f.radio_button 'SN-17', '-1'
+              Imaginative
+
+          %tr.gray1
+            %td 59. Which appeals to you more:
+            %td
+              = f.radio_button 'SN-18', '1'
+              Building
+              %br
+              = f.radio_button 'SN-18', '-1'
+              Designing
+
+          %tr.gray2
+            %td 60. People who know me well, are more likely to come to me for:
+            %td
+              = f.radio_button 'TF-17', '1'
+              Solutions
+              %br
+              = f.radio_button 'TF-17', '-1'
+              Caring
+
+          %tr.gray1
+            %td 61. I am one of the first people a friend goes to when seeking consolation or sympathy:
+            %td
+              = f.radio_button 'TF-18', '1'
+              No
+              %br
+              = f.radio_button 'TF-18', '-1'
+              Yes
+
+          %tr.gray2
+            %td 62. The idea of having a plan on vacation is:
+            %td
+              = f.radio_button 'JP-17', '1'
+              Comforting
+              %br
+              = f.radio_button 'JP-17', '-1'
+              Odd
+
+          %tr.gray1
+            %td 63. In the long run, what's better for a team working on a project:
+            %td
+              = f.radio_button 'JP-18', '1'
+              Excellent results
+              %br
+              = f.radio_button 'JP-18', '-1'
+              Excellent process
+
+          %tr.gray2
+            %td 64. I often let calls go to voicemail because I don't feel like talking:
+            %td
+              = f.radio_button 'EI-10', '1'
+              Not me
+              %br
+              = f.radio_button 'EI-10', '-1'
+              Me
+
+          %tr.gray1
+            %td 65. With a set of Tinkertoys (varied shaped and colored toys to assemble), which would you be more likely to do first:
+            %td
+              = f.radio_button 'SN-19', '1'
+              Sort the pieces in like groups
+              %br
+              = f.radio_button 'SN-19', '-1'
+              Envision what you might build
+
+          %tr.gray2
+            %td 66. When approaching a problem are you more at ease moving through it:
+            %td
+              = f.radio_button 'SN-20', '1'
+              Step-by-step
+              %br
+              = f.radio_button 'SN-20', '-1'
+              Seeing the whole picture
+
+          %tr.gray1
+            %td 67. Over the long haul, it's worse to be:
+            %td
+              = f.radio_button 'TF-19', '1'
+              Too personal
+              %br
+              = f.radio_button 'TF-19', '-1'
+              Too objective
+
+          %tr.gray2
+            %td 68. Which appeals to you more:
+            %td
+              = f.radio_button 'SN-21', '1'
+              Facts
+              %br
+              = f.radio_button 'SN-21', '-1'
+              Concepts
+
+          %tr.gray1
+            %td 69. Unfinished business bothers you:
+            %td
+              = f.radio_button 'JP-19', '1'
+              True
+              %br
+              = f.radio_button 'JP-19', '-1'
+              False
+
+          %tr.gray2
+            %td 70. Which best taps your natural skills on a project:
+            %td
+              = f.radio_button 'JP-20', '1'
+              Doing good planning on the front end
+              %br
+              = f.radio_button 'JP-20', '-1'
+              Contributing with great energy in the final push
+
+          %tr
+            %td{:align=>"right", :colspan=>"2"}
+              %input.btn.btn-primary.btn-small{:name => "commit", :type => "submit", :value => "Submit"}
+
+  %script{:type => "text/javascript"} 
+    $(document).ready(function(){
+    $.fn.prettyPhoto({ social_tools: false });
+    $.prettyPhoto.open('http://www.youtube.com/watch?v=QUv3rSI2NAc','Welcome to LeadU','An introduction to the Personality Tool');
+    });
+
+#push
+= render "static_pages/footer.html.haml"

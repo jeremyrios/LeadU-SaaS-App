@@ -1,0 +1,6 @@
+%h4 To Reset Password Enter Your
+= form_for :password_resets, :url => {:action => "create", :controller=>"password_resets"}  do |f|
+	%p
+		= f.text_field :email, :id=>"email", :name=>"email", :value=>"", :placeholder=>"Email"
+	%p
+		= f.submit "Reset Password", :class => 'btn btn-primary'

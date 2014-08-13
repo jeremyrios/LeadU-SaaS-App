@@ -1,0 +1,49 @@
+#wrap  
+  = render 'navigation.html.haml'
+
+  %div.masthead
+    - flash.each do |key,value|
+      %div{:class => 'alert alert-#{key}'}= value
+    .container    
+      %div#nivoslider-container.theme-default
+        %div#slider.nivoSlider
+          = image_tag("leadu-dan-mulhern75.jpg", :title=>"#dancaption")
+          = image_tag("wifm75.jpg", :title=>"#wifmcaption")
+          = image_tag("mbti75.jpg", :title=>"#mbinfocaption")
+      :javascript
+        $(window).load(function() {
+            $('#slider').nivoSlider();
+        });
+
+      #dancaption.nivo-html-caption.theme-default.nivo-caption
+        %a{:href=>about_path} About LeadU and it's founder Dan Mulhern
+      #wifmcaption.nivo-html-caption.theme-default.nivo-caption
+        %a{:href=>wifm_path} What you stand to gain
+      #mbinfocaption.nivo-html-caption.theme-defaults.nivo-caption
+        %a{:href=>mbinfo_path} Learn More about the Myers Briggs
+
+      %div
+        %center
+          %p
+            %a.zocial.facebook{:href => '/auth/facebook/'} 
+              Sign in with 
+              %strong Facebook
+          %h4 OR
+          = form_for :session, :url => {:action => "create", :controller=>"sessions"} do |f|
+            %p
+              = f.text_field :email, :id=>"user", :name=>"user", :value=>"", :placeholder=>"Email or Username"
+            %p
+              = f.password_field :password, :id=>"pass", :name=>"password", :maxlength=>"16", :placeholder=>"Password"
+            %p#forgotpword
+              %a{:tabindex=>"-1", :href=>"/password_resets/new"} Forgot your password?
+
+            %p
+              = f.submit "Sign In", :class => 'btn btn-primary'
+              = f.check_box :remember, { :id=>"remember" }, true, false
+              %span#remember Remember me
+
+
+
+#push
+
+= render "footer.html.haml"

@@ -1,0 +1,67 @@
+#wrap
+  = render("static_pages/navigation.html.haml")
+  .row-fluid.staticPage
+    %div{:class=>@user.fbid ? "span8 offset1" : "span8 offset2"}
+      -#.span8.offset2
+      .page-header
+        - flash.each do |key,value|
+          %div{:class => 'alert alert-#{key}'}= value        
+        %center
+          %h1.text-blue1 Welcome #{@user.first_name.titleize}! 
+          %h2.text-blue2 Your personality type is: #{@user.survey.personality_type}
+          %h3.text-blue3 Let's learn more about your personality!
+      
+      .span10.offset1 
+        .page-header  
+          %justify
+            %p #{@body}
+            %br
+
+      .span10.offset1.chart_survey
+        .page-header 
+          %center#chart
+            = render_chart(@survey_chart, 'chart')
+            %br
+      .span10.offset1
+        .page-header 
+          %center 
+            %iframe{:width => "560", :height => "315",:frameborder => "0", :src =>"http://www.youtube.com/embed/#{@video_url}",:allowFullScreen => ""}
+            %br
+      .span10.offset1
+        .btn-group.pull-right
+          = link_to image_tag( 'facebook.png', :width=> '35', :align=>'right', 'margin-right'=>'50'), 'http://www.facebook.com/sharer/sharer.php?u=https://personality-types.herokuapp.com/&t=I discovered my personality at LEADU!'
+          -# Original facebook link:  'http://www.facebook.com/sharer/sharer.php?u=http://leadermatch.herokuapp.com&t=I discovered my personality at LEADU!'
+
+          = link_to image_tag( 'twitter.png', :width=> '35', :align=>'right'), ' https://twitter.com/intent/tweet?text=Learn to be a better leader @ https://personality-types.herokuapp.com/'
+          -# Original twitter link: ' https://twitter.com/intent/tweet?text=Learn to be a better leader @ http://leadermatch.herokuapp.com @danmulhern'
+
+          = link_to image_tag( 'linkedin.png', :width=> '35', :align=>'right'), 'http://www.linkedin.com/shareArticle?mini=true&url=http://leadermatch.herokuapp.com&title=LEADU - Leading with your best self&summary=Become a better leader at your business today!&source=<source>'
+          -# Original linkedin link: 'http://www.linkedin.com/shareArticle?mini=true&url=http://leadermatch.herokuapp.com&title=LEADU - Leading with your best self&summary=Become a better leader at your business today!&source=<source>'
+
+    - if @user.fbid
+      .fbbox
+        %table.table.table-hover
+          - @leadU_friends.each do |name, data|
+            %tr.gray3
+              %td                
+                %img{:src=>data[0], :class=>"clear"}
+              %td.text-blue1.clear
+                #{name}
+                uses LeadU
+              %td.text-blue1.clear
+                %strong
+                #{data[1]}
+
+          - @non_leadU_friends.each do |name, data|
+            %tr.gray3
+              %td
+                %img{:src=>data[0], :class=>"clear"}
+              %td.text-blue1.clear
+                #{name}
+              %td
+                =link_to "Invite", "https://www.facebook.com/messages/" + data[1], class: "button btn btn-mini btn-success"
+                
+             
+#push
+
+= render "static_pages/footer.html.haml"

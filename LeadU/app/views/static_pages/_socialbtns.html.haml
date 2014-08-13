@@ -1,0 +1,30 @@
+/%a#logout.navbar.pull-right{:href=>'/logout'} Logout
+-#
+	%div.btn-group.pull-right
+		%a.btn.btn-primary.:href=>"#"}
+			%i.icon-user.icon-white &#8194 #{current_user.first_name.titleize}
+		%a.btn.btn-primary.btn-small.dropdown-toggle{"data-toggle"=>"dropdown", :href=>"#"}
+			%span.caret
+		%ul.dropdown-menu
+			%li
+				%a{:href=>"/edit_profile/"} 
+					&#8194 Edit Profile
+			%li
+				%a{:href=>"/logout"}
+					&#8194 Logout &#8194
+			%li.divider
+			%li
+				%a{:href=>"/admin"} 
+					&#8194 Login as Admin
+
+<div class="btn-group pull-right">
+<a class="btn btn-primary btn-mini" href="#"><i class="icon-user"></i> &#8194 #{current_user.first_name.titleize}</a>
+<a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/edit_profile/#{current_user.id}"><i class="icon-pencil"></i> &#8194 Edit Profile</a></li>
+<li><a href="/logout"><i class="icon-trash"></i> &#8194 Logout &#8194</a></li>
+<li class="divider"></li>
+<li><a href="/admin"><i class="i"></i> &#8194 Login as Admin</a></li>
+</ul>
+</div>
+

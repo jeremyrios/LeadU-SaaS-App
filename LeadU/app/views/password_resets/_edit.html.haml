@@ -1,0 +1,16 @@
+%h4 Please Choose a New Password
+= form_for @user, :url => password_reset_path(params[:id]) do |f| 
+  - if @user.errors.any?
+    %div.error_messages
+      %h2 Form is invalid
+      %ul
+        - for message in @user.errors.full_messages
+          %li 
+            = message
+  %p
+    = f.password_field :password, :id=>"password", :name=>"password", :maxlength=>"16", :placeholder=>"Password"
+  %p
+    = f.password_field :password_confirmation, :id=>"password_confirmation", :name=>"password_confirmation", :maxlength=>"16", :placeholder=>"Password Confirmation"
+  %p
+    = f.submit "Update Password", :class => 'btn btn-primary'
+

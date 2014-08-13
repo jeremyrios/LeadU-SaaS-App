@@ -1,0 +1,17 @@
+= render("static_pages/navigation.html.haml")
+.container
+  - flash.each do |key,value|
+    %div{:class => "alert alert-#{key}"}= value  
+  .marketing
+    %h2{:style=>'text-align: center'} Let's learn more about your personality!
+    %h3{:style=>'text-align:center'}
+      Welcome #{@user.first_name}! Your personality type is: #{@user.survey.personality_type}
+    %left
+      %iframe{:width => "560", :height => "315",:frameborder => "0", :src =>"http://www.youtube.com/embed/#{@video_url}",:allowFullScreen => ""}
+    %right(class="chart_survey")
+      %div(id="chart")
+      = render_chart(@survey_chart, 'chart')
+    %br
+    %div{:class => 'row'}
+      %div{:class => 'span8 offset2'}
+        #{@body}

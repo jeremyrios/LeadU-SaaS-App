@@ -1,0 +1,27 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+    
+      %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+      %a.brand{:href => "/"} LeadU
+      .nav-collapse.collapse
+      = link_to image_tag( 'facebook.png', :width=> '35', :align=>'right'), 'http://www.facebook.com/sharer/sharer.php?u=http://leadermatch.herokuapp.com&t=I discovered my personality at LEADU!'
+      = link_to image_tag( 'twitter.png', :width=> '35', :align=>'right'), ' https://twitter.com/intent/tweet?text=Learn to be a better leader @ http://leadermatch.herokuapp.com @danmulhern'
+      = link_to image_tag( 'linkedin.png', :width=> '35', :align=>'right'), 'http://www.linkedin.com/shareArticle?mini=true&url=http://leadermatch.herokuapp.com&title=LEADU - Leading with your best self&summary=Become a better leader at your business today!&source=<source>'
+      %ul.nav
+        %li
+          %a{:href => "/"} Home
+          - if signed_in?
+            - if professor?
+              %li
+                %a{:href => "/users/#{current_user.id}/edit"} Professor Panel
+            - else
+              %li
+                %a{:href => follow_code_path } Student Panel
+            %li
+              %a{:href => logout_path} Logout
+          - else  
+            %li
+              %a{:href => "./login"} Login
+            %li
+              %a{:href => "./signup"} Sign Up

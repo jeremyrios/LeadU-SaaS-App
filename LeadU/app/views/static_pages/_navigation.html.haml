@@ -1,0 +1,62 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container
+      %button.btn.btn-navbar{:type=>"button", "data-toggle"=>"collapse", "data-target"=>".nav-collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{:href=>"/"} LeadU
+      .nav-collapse.collapse
+        %ul.nav
+          %li
+            %a{:href=>"about"} About
+          %li
+            %a{:href=>"contact"} Contact
+          %li
+            %a{:href=>"wifm"} WIFM
+          %li.dropdown
+            %a.dropdown-toggle{:href=>"mbinfo", "data-toggle"=>"dropdown"} 
+              Myers Briggs 
+              %b.caret
+            %ul.dropdown-menu
+              %li.nav-header General Info
+              %li
+                %a{:href=>'mbinfo'} About MBTI
+              %li.divider
+              %li.nav-header Types
+              %li
+                %a{:href=>"istj"} ISTJ - The Inspector 
+              %li
+                %a{:href=>"isfj"} ISFJ - The Protector
+              %li
+                %a{:href=>"/infj"} INFJ - The Counselor
+              %li
+                %a{:href=>"/intj"} INTJ - The Mastermind
+              %li
+                %a{:href=>"/istp"} ISTP - The Craftsman
+              %li
+                %a{:href=>"/isfp"} ISFP - The Composer
+              %li
+                %a{:href=>"/infp"} INFP - The Healer
+              %li
+                %a{:href=>"/intp"} INTP - The Architect
+              %li
+                %a{:href=>"/estp"} ESTP - The Dynamo
+              %li
+                %a{:href=>"/esfp"} ESFP - The Performer
+              %li
+                %a{:href=>"/enfp"} ENFP - The Champion
+              %li
+                %a{:href=>"/entp"} ENTP - The Visionary
+              %li
+                %a{:href=>"/estj"} ESTJ - The Supervisor
+              %li
+                %a{:href=>"/esfj"} ESFJ - The Provider
+              %li
+                %a{:href=>"/enfj"} ENFJ - The Teacher
+              %li
+                %a{:href=>"/entj"} ENTJ - The Commander
+
+        = render signed_in? ? 'static_pages/socialbtns.html.haml' : 'static_pages/joinnow.html.haml'
+          

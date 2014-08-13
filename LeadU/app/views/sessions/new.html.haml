@@ -1,0 +1,27 @@
+#wrap
+  = render("static_pages/navigation.html.haml")
+  .container
+    - flash.each do |key,value|
+      %div{:class => 'alert alert-#{key}'}= value
+    .marketing
+      .row-fluid
+        .span4
+          %h3 Login
+          = form_for :session, :url => {:action => "create"} do |f|
+            %p
+              = f.label :email, :caption => "Email"
+              = f.text_field :email
+            %p
+              = f.label :password
+              = f.password_field :password
+            %p
+              = f.submit "Submit", :class => 'button'
+        %div{:class => 'span4 offset1'}
+          %div{:class => 'quotes'}
+            %br
+            %h2.quote
+              &#8220 when the leader in everyone is liberated extraordinary things happen. &#8221 - kouzes & posner
+
+#push
+
+= render "static_pages/footer.html.haml"
